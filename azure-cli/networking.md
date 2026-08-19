@@ -34,6 +34,8 @@ An **Azure Virtual Network (VNet)** is a private network in Azure that allows re
 ```bash
 az network vnet list -o table
 
+```
+
 ---
 
 ## 🧪 Hands-on Networking Project
