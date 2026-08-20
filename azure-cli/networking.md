@@ -1,73 +1,135 @@
-# 🌐 Azure Networking
+# 🌐 Azure CLI – Networking
 
 ## 📌 Overview
 
-**Azure Networking** provides the network infrastructure that allows Azure resources to communicate with each other, the internet, and on-premises environments.
+This file contains commonly used **Azure CLI commands for managing Azure networking resources**.
 
-Key networking components include:
+The commands below cover:
 
-- 🌐 Virtual Networks (VNet)
-- 🔹 Subnets
-- 🛡️ Network Security Groups (NSG)
-- 🌍 Public IP Addresses
-
----
-
-## 🎯 Why Azure Networking?
-
-Azure networking helps with:
-
-- 🔗 Connecting cloud resources
-- 🔐 Controlling network traffic
-- 🌍 Providing internet connectivity
-- 🧩 Separating workloads using subnets
-- 🛡️ Securing virtual machines and applications
+* 🌐 Virtual Networks
+* 🔹 Subnets
+* 🛡️ Network Security Groups
+* 🌍 Public IP Addresses
 
 ---
 
-## 🌐 Virtual Networks
+# 🌐 Virtual Networks
 
-An **Azure Virtual Network (VNet)** is a private network in Azure that allows resources to communicate securely.
+## Create a Virtual Network
 
-### List Virtual Networks
+```bash
+az network vnet create \
+  --resource-group <RESOURCE_GROUP_NAME> \
+  --name <VNET_NAME> \
+  --address-prefix 10.0.0.0/16
+```
+
+## List Virtual Networks
 
 ```bash
 az network vnet list -o table
+```
 
+## Show VNet Details
+
+```bash
+az network vnet show \
+  --resource-group <RESOURCE_GROUP_NAME> \
+  --name <VNET_NAME> \
+  -o table
 ```
 
 ---
 
-## 🧪 Hands-on Networking Project
+# 🔹 Subnets
 
-I created and configured an Azure networking environment using Azure CLI.
+## Create a Subnet
 
-### Resources Created
+```bash
+az network vnet subnet create \
+  --resource-group <RESOURCE_GROUP_NAME> \
+  --vnet-name <VNET_NAME> \
+  --name <SUBNET_NAME> \
+  --address-prefix 10.0.1.0/24
+```
 
-| Resource | Name | Configuration |
-|----------|------|---------------|
-| Virtual Network | `vnet-practice` | `10.0.0.0/16` |
-| Subnet | `subnet-web` | `10.0.1.0/24` |
-| Network Security Group | `nsg-web` | Attached to `subnet-web` |
+## List Subnets
 
-### NSG Rules
+```bash
+az network vnet subnet list \
+  --resource-group <RESOURCE_GROUP_NAME> \
+  --vnet-name <VNET_NAME> \
+  -o table
+```
 
-| Rule | Protocol | Port | Direction | Access |
-|------|----------|------|-----------|--------|
-| `Allow-HTTP` | TCP | 80 | Inbound | Allow |
-| `Allow-SSH` | TCP | 22 | Inbound | Allow |
+---
 
-### Architecture
+# 🛡️ Network Security Groups
 
-```text
-Azure Resource Group
-│
-└── VNet: vnet-practice
-    │
-    ├── Subnet: subnet-web
-    │   │
-    │   └── NSG: nsg-web
-    │       ├── Allow-HTTP → TCP 80
-    │       └── Allow-SSH  → TCP 22
-    │
-    └── AzureBastionSubnet
+## Create an NSG
+
+```bash
+az network nsg create \
+  --resource-group <RESOURCE_GROUP_NAME> \
+  --name <NSG_NAME>
+```
+
+## Create an Inbound Rule
+
+```bash
+az network nsg rule create \
+  --resource-group <RESOURCE_GROUP_NAME> \
+  --nsg-name <NSG_NAME> \
+  --name Allow-HTTP \
+  --priority 100 \
+  --direction Inbound \
+  --access Allow \
+  --protocol Tcp \
+  --destination-port-ranges 80
+```
+
+## List NSG Rules
+
+```bash
+az network nsg rule list \
+  --resource-group <RESOURCE_GROUP_NAME> \
+  --nsg-name <NSG_NAME> \
+  -o table
+```
+
+---
+
+# 🌍 Public IP Addresses
+
+## Create a Public IP
+
+```bash
+az network public-ip create \
+  --resource-group <RESOURCE_GROUP_NAME> \
+  --name <PUBLIC_IP_NAME> \
+  --sku Standard \
+  --allocation-method Static
+```
+
+## List Public IP Addresses
+
+```bash
+az network public-ip list -o table
+```
+
+---
+
+# 🧠 Quick Reference
+
+| Task             | Azure CLI Command               |
+| ---------------- | ------------------------------- |
+| Create VNet      | `az network vnet create`        |
+| List VNets       | `az network vnet list`          |
+| Create Subnet    | `az network vnet subnet create` |
+| Create NSG       | `az network nsg create`         |
+| Create NSG Rule  | `az network nsg rule create`    |
+| Create Public IP | `az network public-ip create`   |
+
+---
+
+> 🚀 **Azure CLI → Practice → Verify → Document**
