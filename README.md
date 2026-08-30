@@ -19,27 +19,6 @@ This repository documents my journey of learning cloud technologies by building,
 | 🐧 Linux / Bash | Cloud command-line practice |
 
 ---
-# ☁️ Azure Cloud Practice
-
-> Hands-on learning and practical exploration of **Microsoft Azure, Azure CLI, Linux, Git, GitHub, and Cloud Engineering**.
-
-This repository documents my journey of learning cloud technologies by building, practicing, and documenting real-world Azure concepts step by step.
-
----
-
-## 📚 Topics Covered
-
-| Area | Topics |
-|------|--------|
-| ☁️ Azure Fundamentals | Resource Groups, Azure Services |
-| 💾 Azure Storage | Storage concepts and CLI operations |
-| 🖥️ Virtual Machines | VM creation and management |
-| 🌐 Networking | Azure networking fundamentals |
-| ⚡ Azure CLI | Managing Azure resources from the command line |
-| 🔧 Git & GitHub | Version control and project documentation |
-| 🐧 Linux / Bash | Cloud command-line practice |
-
----
 
 ## 📁 Repository Structure
 
