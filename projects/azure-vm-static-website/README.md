@@ -1,21 +1,32 @@
-# Azure VM Static Website Hosting
+# 🚀 Azure VM Static Website Hosting
 
-## Project Overview
+A hands-on Azure project demonstrating how to deploy and host a static website on an Azure Virtual Machine using the Nginx web server.
 
-This project demonstrates how to create an Azure Virtual Machine and host a static website using Nginx.
+## 📌 Project Overview
 
-## Azure Services Used
+This project demonstrates the deployment of a custom static website on an Ubuntu-based Azure Virtual Machine.
 
-- Azure Virtual Machine
-- Azure Resource Group
-- Network Security Group
-- Public IP
-- Nginx Web Server
+The VM is connected to a public IP and secured using an Azure Network Security Group (NSG). Nginx is installed and configured to serve the website over HTTP.
 
-## Architecture
+## 🏗️ Architecture
 
-User → Public IP → Azure VM → Nginx → Static Website
-
-## Project Status
-
-🚧 In Progress
+```text
+User / Internet
+       |
+       v
+   Public IP
+       |
+       v
+Network Security Group
+       |
+   HTTP : 80
+       |
+       v
+Azure Virtual Machine
+   Ubuntu 24.04
+       |
+       v
+      Nginx
+       |
+       v
+ Static Website
